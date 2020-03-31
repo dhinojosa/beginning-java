@@ -7,4 +7,7 @@ F2 = Find the next error
 CMD + B = Go to source/decl
 CMD + P = Show PArameters for Method
 CTRL + J = Bring up documentation
+CMD + OPT + L = Format Document
+CMD_SHIFT_8 = Column Mode
+OPT + SHIFT + (Mouse Click) = Multicursor Mode
 
