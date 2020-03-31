@@ -3,13 +3,19 @@ package com.fghcorp;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class Team  {
+public class Team implements Comparable<Team> {
     private String name;
     private int wins;
     private int losses;
+    private int rank;
 
     public Team(String name) {
        this.name = name;
+    }
+
+    public Team(int rank, String name) {
+        this.rank = rank;
+        this.name = name;
     }
 
     public String getName() {
@@ -46,5 +52,10 @@ public class Team  {
 
     public void loss() {
        this.losses += 1;
+    }
+
+    @Override
+    public int compareTo(Team o) {
+        return Integer.compare(this.rank, o.rank);
     }
 }

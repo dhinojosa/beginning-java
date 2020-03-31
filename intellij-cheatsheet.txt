@@ -6,3 +6,5 @@ CMD+D = Duplicate Line
 F2 = Find the next error
 CMD + B = Go to source/decl
 CMD + P = Show PArameters for Method
+CTRL + J = Bring up documentation
+
