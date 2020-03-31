@@ -1,0 +1,8 @@
+Find Action: CMD + SHIFT +A
+CTRL+N = Create New..
+CMD+E = Tool Window/Previous Files
+OPT+ENTER = FIX (red highlight)
+CMD+D = Duplicate Line
+F2 = Find the next error
+CMD + B = Go to source/decl
+CMD + P = Show PArameters for Method
