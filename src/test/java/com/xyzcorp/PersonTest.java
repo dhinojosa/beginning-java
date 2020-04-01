@@ -11,34 +11,34 @@ public class PersonTest {
 
     @Test
     public void testPersonFirstName() {
-        Person person = new Person("James", "Gosling");
+        Person person = Person.of("James", "Gosling");
         assertEquals(person.getFirstName(), "James");
     }
 
     @Test
     public void testPersonLastName() {
-        Person person = new Person("James", "Gosling");
+        Person person = Person.of("James", "Gosling");
         assertEquals(person.getLastName(), "Gosling");
     }
 
 
     @Test
     public void testToString() {
-        Person person = new Person("James", "Gosling");
+        Person person = Person.of("James", "Gosling");
         assertEquals("Person[firstName='James', lastName='Gosling']", person.toString());
     }
 
     @Test
     public void testEquals() {
-        Person person1 = new Person("James", "Gosling");
-        Person person2 = new Person("James", "Gosling");
+        Person person1 = Person.of("James", "Gosling");
+        Person person2 = Person.of("James", "Gosling");
         assertEquals(person1, person2);
     }
 
     @Test
     public void testHashCode() {
-        Person person1 = new Person("James", "Gosling");
-        Person person2 = new Person("James", "Gosling");
+        Person person1 = Person.of("James", "Gosling");
+        Person person2 = Person.of("James", "Gosling");
         assertEquals(person1.hashCode(), person2.hashCode());
     }
 
@@ -63,7 +63,8 @@ public class PersonTest {
     @Test
     public void testAge() {
         LocalDate expectedBirthday = LocalDate.of(1955, 5, 19);
-        Person person = Person.of("James", "Gosling", expectedBirthday);
+        Person person = new Person("James", "Gosling",
+            expectedBirthday, () -> LocalDate.of(2020, 4, 1));
         assertEquals(Optional.of(64), person.getAge());
     }
 

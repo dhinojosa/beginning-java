@@ -9,22 +9,22 @@ import java.util.function.Supplier;
 
 public class Person {
     private Supplier<LocalDate> nowSupplier;
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
     private LocalDate birthday;
 
-    public Person(String firstName, String lastName) {
+    protected Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Person(String firstName,
+    protected Person(String firstName,
                   String lastName,
                   LocalDate birthday,
-                  Supplier<LocalDate> now) {
+                  Supplier<LocalDate> localDateSupplier) {
         this(firstName, lastName);
         this.birthday = birthday;
-        this.nowSupplier = now;
+        this.nowSupplier = localDateSupplier;
     }
 
     public static Person of(String firstName, String lastName,
@@ -32,7 +32,7 @@ public class Person {
         if (birthday.isAfter(LocalDate.now()))
             throw new IllegalArgumentException("Birthday cannot " +
                 "be in the future");
-        return new Person(firstName, lastName, birthday, () -> LocalDate.now());
+        return new Person(firstName, lastName, birthday, LocalDate::now);
     }
 
     public static Person of(String firstName, String lastName) {

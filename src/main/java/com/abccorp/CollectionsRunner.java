@@ -9,18 +9,18 @@ public class CollectionsRunner {
     public static void main(String[] args) {
         //CMD_SHIFT_8
         //OPT + SHIFT (multicursor)
-        Person p1 = new Person("Aretha", "Franklin");
-        Person p2 = new Person("Elvis", "Presley");
-        Person p3 = new Person("David", "Bowie");
-        Person p4 = new Person("Taylor", "Swift");
-        Person p5 = new Person("Johnny", "Cash");
-        Person p6 = new Person("Jimi", "Hendrix");
-        Person p7 = new Person("Marvin", "Gaye");
-        Person p8 = new Person("Prince", "Nelson");
-        Person p9 = new Person("Willie", "Nelson");
-        Person p10 = new Person("Lady", "Gaga");
-        Person p11 = new Person("Garth", "Brooks");
-        Person p12 = new Person("Rick", "James");
+        Person p1 = Person.of("Aretha", "Franklin");
+        Person p2 = Person.of("Elvis", "Presley");
+        Person p3 = Person.of("David", "Bowie");
+        Person p4 = Person.of("Taylor", "Swift");
+        Person p5 = Person.of("Johnny", "Cash");
+        Person p6 = Person.of("Jimi", "Hendrix");
+        Person p7 = Person.of("Marvin", "Gaye");
+        Person p8 = Person.of("Prince", "Nelson");
+        Person p9 = Person.of("Willie", "Nelson");
+        Person p10 = Person.of("Lady", "Gaga");
+        Person p11 = Person.of("Garth", "Brooks");
+        Person p12 = Person.of("Rick", "James");
 
         List<Person> peopleList = new ArrayList<>();
         peopleList.add(p1);

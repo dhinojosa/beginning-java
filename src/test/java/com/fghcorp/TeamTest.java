@@ -23,7 +23,7 @@ public class TeamTest {
     @Test
     public void testTeamEqualityWithAnotherObject() {
         Team team = new Team("Seattle Sounders");
-        Person person = new Person("Albert", "Einstein");
+        Person person = Person.of("Albert", "Einstein");
         assertFalse(team.equals(person));
     }
 
