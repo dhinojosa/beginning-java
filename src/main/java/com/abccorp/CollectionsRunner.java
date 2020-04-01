@@ -3,10 +3,7 @@ package com.abccorp;
 import com.google.common.collect.*;
 import com.xyzcorp.Person;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CollectionsRunner {
     public static void main(String[] args) {
@@ -25,8 +22,13 @@ public class CollectionsRunner {
         Person p11 = new Person("Garth", "Brooks");
         Person p12 = new Person("Rick", "James");
 
-        List<Person> peopleList = new ArrayList<Person>();
+        List<Person> peopleList = new ArrayList<>();
         peopleList.add(p1);
+        peopleList.add(p2);
+        peopleList.add(p3);
+        peopleList.add(p4);
+        peopleList.add(p5);
+        peopleList.add(p6);
 
         //Set<Person>
 
@@ -44,5 +46,20 @@ public class CollectionsRunner {
         multimap.put(p4, "Country");
 
         System.out.println(multimap.get(p4));
+
+
+        Comparator<Person> sortByFirstName = (o1, o2) ->
+            o1.getFirstName().compareTo(o2.getFirstName());
+
+        Comparator<Person> sortByLastName = new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                return o1.getLastName().compareTo(o2.getLastName());
+            }
+        };
+
+        Collections.sort(peopleList, sortByLastName);
+
+        System.out.println(peopleList);
     }
 }
