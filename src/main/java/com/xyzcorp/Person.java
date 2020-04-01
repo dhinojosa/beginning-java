@@ -5,8 +5,10 @@ import java.time.Period;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.function.Supplier;
 
 public class Person {
+    private Supplier<LocalDate> nowSupplier;
     private String firstName;
     private String lastName;
     private LocalDate birthday;
@@ -16,21 +18,25 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Person(String firstName, String lastName,
-                  Optional<LocalDate> birthday) {
+    public Person(String firstName,
+                  String lastName,
+                  LocalDate birthday,
+                  Supplier<LocalDate> now) {
         this(firstName, lastName);
-        checkThatBirthdayIsNotInFuture(birthday);
-        this.birthday = birthday.orElse(null);
+        this.birthday = birthday;
+        this.nowSupplier = now;
     }
 
-    protected void checkThatBirthdayIsNotInFuture(Optional<LocalDate> birthday) {
-        birthday //Optional<LocalDate>
-                 .map(bd -> bd.isAfter(LocalDate.now())) //Optional<Boolean>
-                 .ifPresent(b -> {
-                     if (b)
-                         throw new IllegalArgumentException("Birthday cannot " +
-                             "be in the future");
-                 });
+    public static Person of(String firstName, String lastName,
+                            LocalDate birthday) {
+        if (birthday.isAfter(LocalDate.now()))
+            throw new IllegalArgumentException("Birthday cannot " +
+                "be in the future");
+        return new Person(firstName, lastName, birthday, () -> LocalDate.now());
+    }
+
+    public static Person of(String firstName, String lastName) {
+        return new Person(firstName, lastName);
     }
 
     public String getFirstName() {
@@ -69,6 +75,6 @@ public class Person {
 
     public Optional<Integer> getAge() {
         return getBirthday().map(localDate ->
-            Period.between(localDate, LocalDate.now()).getYears());
+            Period.between(localDate, nowSupplier.get()).getYears());
     }
 }

@@ -27,6 +27,12 @@ public class TeamTest {
         assertFalse(team.equals(person));
     }
 
+
+    @Test
+    public void testTeamEqualityWithAnotherObjectUsingFactory() {
+        Team team = Team.create("Seattle Sounders", 4);
+    }
+
     @Test
     public void testThatTwoEqualItemsHaveTheSameHash() {
         Team team = new Team("Seattle Sounders");
@@ -63,4 +69,5 @@ public class TeamTest {
         team.loss();
         assertEquals("2-1", team.getRecord());
     }
+
 }

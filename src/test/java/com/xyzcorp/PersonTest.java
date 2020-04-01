@@ -43,33 +43,41 @@ public class PersonTest {
     }
 
     @Test
+    public void testFactory() {
+        LocalDate expectedBirthday = LocalDate.of(1955, 5, 19);
+        Person person = Person.of("James", "Gosling", expectedBirthday);
+        assertEquals("James", person.getFirstName());
+        assertEquals("Gosling", person.getLastName());
+        assertEquals(Optional.of(expectedBirthday), person.getBirthday());
+    }
+
+    @Test
     public void testBirthday() {
         //CMD+OPT+N = Inline
-        Optional<LocalDate> expectedBirthday = Optional.of(LocalDate.of(1955, 5, 19));
-        Person person = new Person("James", "Gosling", expectedBirthday);
+        LocalDate expectedBirthday = LocalDate.of(1955, 5, 19);
+        Person person = Person.of("James", "Gosling", expectedBirthday);
         Optional<LocalDate> actualBirthday = person.getBirthday();
-        assertEquals(actualBirthday, expectedBirthday);
+        assertEquals(actualBirthday, Optional.of(expectedBirthday));
     }
 
     @Test
     public void testAge() {
-        Optional<LocalDate> expectedBirthday = Optional.of(LocalDate.of(1955, 5, 19));
-        Person person = new Person("James", "Gosling", expectedBirthday);
+        LocalDate expectedBirthday = LocalDate.of(1955, 5, 19);
+        Person person = Person.of("James", "Gosling", expectedBirthday);
         assertEquals(Optional.of(64), person.getAge());
     }
 
     @Test
     public void testAgeWithNoBirthday() {
-        Optional<LocalDate> expectedBirthday = Optional.empty();
-        Person person = new Person("James", "Gosling", expectedBirthday);
+        Person person = Person.of("James", "Gosling");
         assertEquals(Optional.empty(), person.getAge());
     }
 
     @Test
     public void testBirthdayIsNotInFuture() {
-        Optional<LocalDate> expectedBirthday = Optional.of(LocalDate.of(2040, 1, 10));
+        LocalDate expectedBirthday = LocalDate.of(2040, 1, 10);
         try {
-            new Person("James", "Gosling", expectedBirthday);
+            Person.of("James", "Gosling", expectedBirthday);
             fail("This should never happen");
         } catch (IllegalArgumentException iae) {
             assertEquals("Birthday cannot be in the future", iae.getMessage());

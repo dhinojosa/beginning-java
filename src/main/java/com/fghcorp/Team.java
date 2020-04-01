@@ -8,14 +8,29 @@ public class Team implements Comparable<Team> {
     private int wins;
     private int losses;
     private int rank;
+    private static int count;
 
     public Team(String name) {
-       this.name = name;
+        count += 1;
+        this.name = name;
     }
 
     public Team(int rank, String name) {
+        this(name);
         this.rank = rank;
-        this.name = name;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    //static method factory!
+    public static Team create(String name, int rank) {
+        //complicated logical,
+        //creating object graph,
+        //complicated setup,
+        //complicated validation
+        return new Team(rank, name);
     }
 
     public String getName() {
